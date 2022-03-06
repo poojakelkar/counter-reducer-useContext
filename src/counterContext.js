@@ -10,7 +10,7 @@ const CounterProvider = ({ children }) => {
       case "increment":
         return { count: state.count + action.payload };
       case "decrement":
-        return { count: state.count + action.payload };
+        return { count: state.count - action.payload };
     }
   }
   const [state, dispatcher] = useReducer(reducer, { count: 0 });
