@@ -13,4 +13,5 @@ const CounterProvider = ({ children }) => {
     </CounterContext.Provider>
   );
 };
+
 export { useCounter, CounterProvider };
