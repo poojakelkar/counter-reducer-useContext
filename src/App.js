@@ -26,14 +26,22 @@ const items = [
 
 function reducerFun() {
   return (state, action) => {
-    return {
-      ...state,
-      cartItem: state.cartItem + 1,
-      totalPrice: state.totalPrice + action
-    };
+    switch (action.type) {
+      case "ADD_TO_CART":
+        return {
+          ...state,
+          cartItem: state.cartItem + 1,
+          totalPrice: state.totalPrice + action.payload
+        };
+      case "REMOVE_FROM_CART":
+        return {
+          ...state,
+          cartItem: state.cartItem - 1,
+          totalPrice: state.totalPrice - action.payload
+        };
+    }
   };
 }
-
 export default function App() {
   const [state, dispatch] = useReducer(reducerFun(), {
     cartItem: 0,
@@ -50,7 +58,18 @@ export default function App() {
           <div>
             <h2>{name}</h2>
             <p>{price}</p>
-            <button onClick={() => dispatch(price)}>Add To Cart</button>
+            <button
+              onClick={() => dispatch({ type: "ADD_TO_CART", payload: price })}
+            >
+              Add To Cart
+            </button>
+            <button
+              onClick={() =>
+                dispatch({ type: "REMOVE_FROM_CART", payload: price })
+              }
+            >
+              Remove from Cart
+            </button>
           </div>
         ))}
       </div>
