@@ -75,6 +75,7 @@ export default function App() {
             >
               Remove from cart
             </button>
+            <button>Add to wishlist</button>
           </div>
         ))}
       </div>
